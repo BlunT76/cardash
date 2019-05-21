@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { StatusBar, StyleSheet, Text, View, PermissionsAndroid, Dimensions, PixelRatio, Platform} from 'react-native';
+import { StatusBar, StyleSheet, View, PermissionsAndroid, Dimensions, PixelRatio, Platform} from 'react-native';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -44,7 +44,6 @@ export default class App extends Component {
     this.state = {
       allowSpeed: false,
       allowPlayer: false,
-      traveled: 0,
     };
   }
   componentDidMount() {
@@ -58,7 +57,6 @@ export default class App extends Component {
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
       ])
       .then((result) => {
-        console.log(result)
         if (result['android.permission.ACCESS_FINE_LOCATION'] === 'granted') {
           this.setState({
             allowSpeed: true,
@@ -73,33 +71,8 @@ export default class App extends Component {
     }
   }
 
-  //Calcul de la distance parcourue
-  // haversineDistance = (latlngA, latlngB, isMiles) => {
-  //   const toRad = x => (x * Math.PI) / 180;
-  //   const R = 6371; // km
-
-  //   const dLat = toRad(latlngB[0] - latlngA[0]);
-  //   const dLatSin = Math.sin(dLat / 2);
-  //   const dLon = toRad(latlngB[1] - latlngA[1]);
-  //   const dLonSin = Math.sin(dLon / 2);
-
-  //   // prettier-ignore
-  //   const a = dLatSin * dLatSin +Math.cos(toRad(latlngA[1])) * Math.cos(toRad(latlngB[1])) * dLonSin * dLonSin;
-  //   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  //   let distance = R * c;
-
-  //   //if (isMiles) distance /= 1.60934;
-  //   if (distance < 1 && this.state.speed > 5) {
-  //     this.setState({
-  //       traveled: this.state.traveled + distance
-  //     });
-  //   }
-  // };
-
   render() {
     const { allowSpeed, allowPlayer } = this.state;
-    //Affichage de la distance parcourue
-    // const travelDisplay = +traveled.toFixed(1);
 
     return (
       <Provider store={ store }>
@@ -108,17 +81,14 @@ export default class App extends Component {
           <StatusBar backgroundColor="#272822" barStyle="light-content" />
           <KeepAwake />
 
-          <KilometerCounter />
-          {/* <Text style={styles.kmCounter}>{travelDisplay} km</Text> */}
-          { allowSpeed &&<Speedometer allowMS={ this.state.allowMaxSpeed } />}
+          { allowSpeed &&<KilometerCounter /> }
+          { allowSpeed &&<Speedometer allowMS={ this.state.allowMaxSpeed } /> }
           
           <View style={ styles.bottomContainer }>
 
-            <TimeDisplay />
-
-            { allowPlayer &&<AudioPlayer/>}
-
-            <MaxSpeed />
+            { allowSpeed &&<TimeDisplay /> }
+            { allowPlayer &&<AudioPlayer/> }
+            { allowSpeed &&<MaxSpeed /> }
 
           </View>
           
@@ -149,12 +119,4 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: '#272822',
   },
-  kmCounter: {
-    fontFamily: "digital-7",
-    fontSize: heightPercentageToDP("8%"),
-    color: "white",
-    textAlign: 'center',
-    backgroundColor: '#272822',
-    elevation: 5,
-  }
 });

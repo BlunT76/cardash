@@ -6,6 +6,7 @@ const initialState = {
   lng: 0,
   oldlat: 0,
   oldlng: 0,
+  maxspeed: 0,
   gpsTime: '',
 };
 
@@ -26,6 +27,10 @@ const gpsDataReducer = (state = initialState, action) => {
       // hour = hour.substring(0, hour.length - 3);
       return Object.assign({}, state, {
         gpsTime: hour.substring(0, hour.length - 3)
+      });
+    case 'ADD_MAXSPEED':
+      return Object.assign({}, state, {
+        maxspeed: action.payload
       });
 
     default:

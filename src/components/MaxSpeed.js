@@ -2,9 +2,10 @@ import React, { Component} from 'react';
 import { StyleSheet, Text, TouchableHighlight, PixelRatio, Dimensions } from 'react-native';
 
 import { connect } from 'react-redux';
+import { addMaxSpeed } from '../store/Action';
 
 const nominatim = "https://nominatim.openstreetmap.org/reverse?format=json&zoom=18&addressdetails=18&limit=1&"
-// lat=43.0976337&lon=0.7122893
+
 // detecte les dimensions de l'écran
 const widthPercentageToDP = widthPercent => {
   const screenWidth = Dimensions.get("window").width;
@@ -21,8 +22,8 @@ const heightPercentageToDP = heightPercent => {
 export { widthPercentageToDP, heightPercentageToDP };
 
 const mapStateToProps = (state) => {
-  const { lat, lng } = state;
-  return { lat, lng };
+  const { lat, lng, maxspeed } = state;
+  return { lat, lng, maxspeed };
 };
 
 class MaxSpeed extends Component {
@@ -32,42 +33,36 @@ class MaxSpeed extends Component {
     this.state = {
       allowMaxSpeed: false,
       maxSpeedColor: 'white',
-      maxSpeed: 'off',
       maxSpeedIsFetching: null,
     }
   }
+
   //toggle on/off the max speed fonctionnality
   getMaxSpeed = () => {
     if (this.state.allowMaxSpeed === false) {
+      // start maxspeed detection
+      this.props.dispatch(addMaxSpeed(0));
       this.setState({
         allowMaxSpeed: true,
         maxSpeedColor: 'green',
-        maxSpeed: '---',
         maxSpeedIsFetching: setInterval(this.fetchMaxSpeed, 5000)
       });
-      console.log("requete vitesse limite max activée");
-      
     } else {
+      // stop maxspeed detection
+      this.props.dispatch(addMaxSpeed(0));
       this.setState({
         allowMaxSpeed: false,
         maxSpeedColor: 'white',
-        maxSpeed: 'off',
         maxSpeedIsFetching: clearInterval(this.state.maxSpeedIsFetching)
       });
-      // console.log("requete vitesse limite max désactivée");
     }
   }
 
   //Request max speed on overpass api
   fetchMaxSpeed = () => {
     const { lat, lng } = this.props;
-    // console.log("requete vitesse maxi !!!", this.props);
-    if ((lat != null) & (lng != null)) {
-      // const over = "http://overpass-api.de/api/interpreter?data=[out:json];way(26355387);out;"
-      // prettier-ignore
-      // fetch(`${overpass}(around:2.0,${lat},${lng});out%20tags;`,
-
-      // lat=43.0976337&lon=0.7122893
+    if ((lat != 0) & (lng != 0)) {
+      // request the osm_id
       fetch(`${nominatim}lat=${lat}&lon=${lng}`,
         {
           method: "GET"
@@ -75,10 +70,8 @@ class MaxSpeed extends Component {
       )
       .then(response => response.json())
       .then(responseJson => {
-        // console.log(responseJson)
         if (responseJson.osm_type === "way" && responseJson.osm_id) {
-          
-          // const over = `http://overpass-api.de/api/interpreter?data=[out:json];way(${responseJson.osm_id});out;`;
+          // request the maxspeed with the osm_id
           fetch(`http://overpass-api.de/api/interpreter?data=[out:json];way(${responseJson.osm_id});out;`,
             {
               method: "GET"
@@ -86,29 +79,38 @@ class MaxSpeed extends Component {
           )
           .then(resp =>resp.json())
           .then(respJson => {
-            // console.log(respJson)
             if(respJson.elements[0].tags.maxspeed) {
-              this.setState({
-                maxSpeed: respJson.elements[0].tags.maxspeed,
-              });
+              this.props.dispatch(addMaxSpeed(+respJson.elements[0].tags.maxspeed));
             }
           })
+          .catch(error => {
+            this.props.dispatch(addMaxSpeed(0));
+          });
         }
       })
       .catch(error => {
-        // console.log(error);
-        this.setState({
-          maxSpeed: '---'
-        });
+        this.props.dispatch(addMaxSpeed(0));
       });
     }
   }
 
   render() {
-    const { maxSpeed, maxSpeedColor } = this.state;
+    const { maxSpeedColor, allowMaxSpeed } = this.state;
+    const { maxspeed } = this.props;
+    let maxspeedDisplay = `${maxspeed}`;
+
+    if ( maxspeed === 0) {
+      if (!allowMaxSpeed) {
+        maxspeedDisplay = 'off';
+      }
+      if (allowMaxSpeed) {
+        maxspeedDisplay = '---';
+      }
+    }
+
     return (
       <TouchableHighlight  onPress={() => this.getMaxSpeed()}>
-        <Text style={ [styles.maxSpeed, { color: maxSpeedColor }]}>Max: { maxSpeed || 'off' }</Text>
+        <Text style={ [styles.maxSpeed, { color: maxSpeedColor }]}>Max: { maxspeedDisplay }</Text>
       </TouchableHighlight>
     );
   }
