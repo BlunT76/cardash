@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots tests App renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#272822",
+      "flex": 1,
+    }
+  }
+>
+  <KeepAwake />
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "backgroundColor": "#272822",
+        "elevation": 5,
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "maxHeight": 253.5,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`Snapshots tests AudioPlayer renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "margin": 26.5,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/step-backward-solid.png",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "margin": 26.5,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/play-solid.png",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "margin": 26.5,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/step-forward-solid.png",
+        }
+      }
+      style={
+        Object {
+          "height": 200,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+</View>
+`;

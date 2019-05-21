@@ -14,8 +14,8 @@ const gpsDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_GPS_DATA':
       return Object.assign({}, state, {
-        lat: action.payload.latitude,
-        lng: action.payload.longitude,
+        lat: action.payload.latitude || 0,
+        lng: action.payload.longitude || 0,
       });
     case 'ADD_OLD_GPS_DATA':
       return Object.assign({}, state, {
@@ -24,7 +24,6 @@ const gpsDataReducer = (state = initialState, action) => {
       });
     case 'ADD_TIME':
       let hour = new Date(action.payload).toLocaleTimeString("fr-FR");
-      // hour = hour.substring(0, hour.length - 3);
       return Object.assign({}, state, {
         gpsTime: hour.substring(0, hour.length - 3)
       });
