@@ -22,13 +22,14 @@
 # *.xcuserstate
 # project.xcworkspace
 
-# Android/IntelliJ
+# Android/IntelliJ/Vscode
 #
 build/
 .idea
 .gradle
 local.properties
 *.iml
+
 
 # node.js
 #
