@@ -1,4 +1,4 @@
-import React, { Component, PureComponent} from 'react';
+import React, { PureComponent} from 'react';
 import { StyleSheet, View, Image, TouchableHighlight, Dimensions, PixelRatio } from 'react-native';
 import MusicFiles from 'react-native-get-music-files';
 import Sound from 'react-native-sound';
@@ -19,7 +19,7 @@ const heightPercentageToDP = heightPercent => {
 };
 export { widthPercentageToDP, heightPercentageToDP };
 
-export default class AudioPlayer extends Component{
+export default class AudioPlayer extends PureComponent{
   constructor(props) {
     super(props);
     this.state = {
@@ -48,14 +48,8 @@ export default class AudioPlayer extends Component{
       fields : ['title','albumTitle','genre','lyrics','artwork','duration'] // for iOs Version
     })
     .then(tracks => {
-      // console.log(tracks)
-      // const regex = /(\/0\/Music\/)/g
-      // const correctTracks = tracks.filter(elm => 
-      //   elm.path.match(regex)
-      // );
-      // console.log(correctTracks)
       this.setState({
-        tracks: tracks, //correctTracks,
+        tracks: tracks,
       });
     })
     .catch(error => {

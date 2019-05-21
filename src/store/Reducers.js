@@ -12,25 +12,25 @@ const initialState = {
 
 const gpsDataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_GPS_DATA':
-      return Object.assign({}, state, {
+    case ADD_GPS_DATA:
+      return {...state,
         lat: action.payload.latitude || 0,
         lng: action.payload.longitude || 0,
-      });
+      };
     case 'ADD_OLD_GPS_DATA':
-      return Object.assign({}, state, {
+      return {...state,
         oldlat: action.payload.latitude,
         oldlng: action.payload.longitude,
-      });
+      };
     case 'ADD_TIME':
       let hour = new Date(action.payload).toLocaleTimeString("fr-FR");
-      return Object.assign({}, state, {
+      return {...state,
         gpsTime: hour.substring(0, hour.length - 3)
-      });
+      };
     case 'ADD_MAXSPEED':
-      return Object.assign({}, state, {
+      return {...state,
         maxspeed: action.payload
-      });
+      };
 
     default:
       return state;

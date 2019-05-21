@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { PureComponent} from 'react';
 import { StyleSheet, Text, TouchableHighlight, PixelRatio, Dimensions } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -26,7 +26,7 @@ const mapStateToProps = (state) => {
   return { lat, lng, maxspeed };
 };
 
-class MaxSpeed extends Component {
+class MaxSpeed extends PureComponent {
   constructor() {
     super()
     this.watchId = null;

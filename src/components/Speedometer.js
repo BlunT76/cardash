@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text, View, StyleSheet, Dimensions, PixelRatio } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -33,7 +33,7 @@ const options = {
   useSignificantChanges: false,
 };
 
-class Speedometer extends Component{
+class Speedometer extends PureComponent{
   constructor(props) {
     super(props);
     this.state = {

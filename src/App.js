@@ -4,7 +4,7 @@
  *
  */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { StatusBar, StyleSheet, View, PermissionsAndroid, Dimensions, PixelRatio, Platform} from 'react-native';
 
 import { Provider } from 'react-redux';
@@ -37,7 +37,7 @@ const heightPercentageToDP = heightPercent => {
 export { widthPercentageToDP, heightPercentageToDP };
 
 
-export default class App extends Component {
+export default class App extends PureComponent {
   constructor(props) {
     super(props);
     this.watchId = null;

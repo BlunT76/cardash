@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text, StyleSheet, Dimensions, PixelRatio } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -24,7 +24,7 @@ const heightPercentageToDP = heightPercent => {
 };
 export { widthPercentageToDP, heightPercentageToDP };
 
-class KilometerCounter extends Component{
+class KilometerCounter extends PureComponent{
   constructor(props) {
     super(props);
     this.state = {
