@@ -1,7 +1,8 @@
-import React, { Component} from 'react';
-import { StyleSheet, View, Image, TouchableHighlight, Dimensions, PixelRatio, PermissionsAndroid } from 'react-native';
+import React, { Component, PureComponent} from 'react';
+import { StyleSheet, View, Image, TouchableHighlight, Dimensions, PixelRatio } from 'react-native';
 import MusicFiles from 'react-native-get-music-files';
 import Sound from 'react-native-sound';
+
 
 //detecte les dimensions de l'écran
 const widthPercentageToDP = widthPercent => {
@@ -30,23 +31,8 @@ export default class AudioPlayer extends Component{
   }
 
   async componentDidMount() {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        {
-          'title': 'Access Storage',
-          'message': 'Access Storage for the pictures'
-        }
-      )
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use read from the storage")
-        this.scanTracks();
-      } else {
-        console.log("Storage permission denied")
-      }
-    } catch (err) {
-      console.warn(err)
-    }
+    // scan audio files
+    this.scanTracks();
   }
   
   scanTracks = () => {
@@ -60,15 +46,20 @@ export default class AudioPlayer extends Component{
       cover : false,
       minimumSongDuration : 10000, // get songs bigger than 10000 miliseconds duration,
       fields : ['title','albumTitle','genre','lyrics','artwork','duration'] // for iOs Version
-  })
+    })
     .then(tracks => {
-      console.log(tracks)
+      // console.log(tracks)
+      // const regex = /(\/0\/Music\/)/g
+      // const correctTracks = tracks.filter(elm => 
+      //   elm.path.match(regex)
+      // );
+      // console.log(correctTracks)
       this.setState({
-        tracks: tracks,
+        tracks: tracks, //correctTracks,
       });
     })
     .catch(error => {
-    console.log(error)
+      console.log(error)
     });
   }
 
@@ -121,11 +112,12 @@ export default class AudioPlayer extends Component{
     if(this.track != null) {
       this.track.stop();
     };
-    this.track = new Sound(`/sdcard/Music/${tracks[trackNumber].fileName}`,'',(error) => {
+    // this.track = new Sound(`/sdcard/Music/${tracks[trackNumber].fileName}`,'',(error) => {
+    this.track = new Sound(`${tracks[trackNumber].path}`,'',(error) => {
       if (!error) {
         this.track.play((success) => {
           if (!success) {
-            console.log('Sound did not play')
+            // console.log('Sound did not play')
           }
         })
       }

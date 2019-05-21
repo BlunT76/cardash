@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions, PixelRatio } from 'react-native';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addGpsData, addTime, addSpeed } from '../store/Action';
+
+const mapStateToProps = (state) => {
+  const { gpsData, gpsTime } = state
+  return { gpsData, gpsTime }
+};
+// console.log(mapStateToProps())
+
+// function mapStateToProps(state) { return {gpsData: state.rootReducer.gpsData};}
+// function mapDispatchToProps(dispatch) { return bindActionCreators(Actions, dispatch);}
+
+
 //detecte les dimensions de l'écran
 const widthPercentageToDP = widthPercent => {
   const screenWidth = Dimensions.get("window").width;
@@ -24,13 +38,12 @@ const options = {
   useSignificantChanges: false,
 };
 
-export default class Speedometer extends Component{
+class Speedometer extends Component{
   constructor(props) {
     super(props);
     this.state = {
       allowSpeed: true,
       speed: 50,
-      // maxspeed: null,
       speedColor: 'green',
     }
     this.watchId = null;
@@ -39,8 +52,7 @@ export default class Speedometer extends Component{
   async componentDidMount() {
     // launch speed detection
     this.getPosition();
-    console.log('speedometer mounted')
-    
+    // console.log(this.state)
   }
 
   componentWillUnmount() {
@@ -48,18 +60,18 @@ export default class Speedometer extends Component{
   }
 
   getPosition() {
-    const { getloc, allowMS, getTime } = this.props;
     this.watchId = navigator.geolocation.watchPosition(position => {
-      getTime(position.timestamp);
       if (this.props.allowMS === true) {
-        getloc(position.coords.latitude, position.coords.longitude);
+        this.props.dispatch(addGpsData(position.coords))
       }
+      this.props.dispatch(addTime(position.timestamp));
+      this.props.dispatch(addGpsData(position.coords))
       this.setState({
         speed: Math.round(position.coords.speed * 3.6),
       });
     },
     error =>{
-      console.log(error);
+      // console.log(error);
     }, options);
   }
   
@@ -114,3 +126,5 @@ const styles = StyleSheet.create({
     color: 'green',
   },
 });
+
+export default connect(mapStateToProps)(Speedometer);
