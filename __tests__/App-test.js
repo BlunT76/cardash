@@ -1,12 +1,10 @@
 import 'react-native';
 import React from 'react';
+import renderer from 'react-test-renderer';
 import App from '../src/App';
 import AudioPlayer from '../src/components/AudioPlayer';
 import * as actions from '../src/store/Action';
 import gpsDataReducer from '../src/store/Reducers';
-
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 jest.mock('react-native-sound', () => '');
 jest.mock('react-native-keep-awake', () => 'KeepAwake');
@@ -27,39 +25,39 @@ describe('Snapshots tests', () => {
 // Redux Action tests
 describe('actions tests', () => {
   it('should create an action to add a gps data', () => {
-    const payload = "test";
+    const payload = 'test';
     const expectedAction = {
       type: actions.ADD_GPS_DATA,
-      payload
-    }
-    expect(actions.addGpsData(payload)).toEqual(expectedAction)
+      payload,
+    };
+    expect(actions.addGpsData(payload)).toEqual(expectedAction);
   });
 
   it('should create an action to add a old gps data', () => {
-    const payload = "test";
+    const payload = 'test';
     const expectedAction = {
       type: actions.ADD_OLD_GPS_DATA,
-      payload
-    }
-    expect(actions.addOldGpsData(payload)).toEqual(expectedAction)
+      payload,
+    };
+    expect(actions.addOldGpsData(payload)).toEqual(expectedAction);
   });
 
   it('should create an action to add time', () => {
-    const payload = "test";
+    const payload = 'test';
     const expectedAction = {
       type: actions.ADD_TIME,
-      payload
-    }
-    expect(actions.addTime(payload)).toEqual(expectedAction)
+      payload,
+    };
+    expect(actions.addTime(payload)).toEqual(expectedAction);
   });
 
   it('should create an action to add maxspeed', () => {
-    const payload = "test";
+    const payload = 'test';
     const expectedAction = {
       type: actions.ADD_MAXSPEED,
-      payload
-    }
-    expect(actions.addMaxSpeed(payload)).toEqual(expectedAction)
+      payload,
+    };
+    expect(actions.addMaxSpeed(payload)).toEqual(expectedAction);
   });
 });
 
@@ -72,65 +70,70 @@ describe('reducers tests', () => {
         lng: 0,
         oldlat: 0,
         oldlng: 0,
+        speed: 0,
         maxspeed: 0,
         gpsTime: '',
-      }
-    )
-  })
+      },
+    );
+  });
   it('should handle ADD_GPS_DATA', () => {
-    const payload = {latitude: 0.44, longitude: 0.44};
-    const action = {type: 'ADD_GPS_DATA', payload};
-    expect(gpsDataReducer(undefined,action)).toEqual(
+    const payload = { latitude: 0.44, longitude: 0.44 };
+    const action = { type: 'ADD_GPS_DATA', payload };
+    expect(gpsDataReducer(undefined, action)).toEqual(
       {
         lat: 0.44,
         lng: 0.44,
         oldlat: 0,
         oldlng: 0,
+        speed: 0,
         maxspeed: 0,
         gpsTime: '',
-      }
-    )
+      },
+    );
   });
   it('should handle ADD_OLD_GPS_DATA', () => {
-    const payload = {latitude: 0.44, longitude: 0.44};
-    const action = {type: 'ADD_OLD_GPS_DATA', payload};
-    expect(gpsDataReducer(undefined,action)).toEqual(
+    const payload = { latitude: 0.44, longitude: 0.44 };
+    const action = { type: 'ADD_OLD_GPS_DATA', payload };
+    expect(gpsDataReducer(undefined, action)).toEqual(
       {
         lat: 0,
         lng: 0,
         oldlat: 0.44,
         oldlng: 0.44,
+        speed: 0,
         maxspeed: 0,
         gpsTime: '',
-      }
-    )
+      },
+    );
   });
   it('should handle ADD_TIME', () => {
     const payload = 1558450230;
-    const action = {type: 'ADD_TIME', payload};
-    expect(gpsDataReducer(undefined,action)).toEqual(
+    const action = { type: 'ADD_TIME', payload };
+    expect(gpsDataReducer(undefined, action)).toEqual(
       {
         lat: 0,
         lng: 0,
         oldlat: 0,
         oldlng: 0,
+        speed: 0,
         maxspeed: 0,
-        gpsTime: "01:54",
-      }
-    )
+        gpsTime: '01:54',
+      },
+    );
   });
   it('should handle ADD_MAXSPEED', () => {
     const payload = 50;
-    const action = {type: 'ADD_MAXSPEED', payload};
-    expect(gpsDataReducer(undefined,action)).toEqual(
+    const action = { type: 'ADD_MAXSPEED', payload };
+    expect(gpsDataReducer(undefined, action)).toEqual(
       {
         lat: 0,
         lng: 0,
         oldlat: 0,
         oldlng: 0,
+        speed: 0,
         maxspeed: 50,
         gpsTime: '',
-      }
-    )
+      },
+    );
   });
 });

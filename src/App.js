@@ -12,7 +12,7 @@ import {
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import KeepAwake from 'react-native-keep-awake';
-import devToolsEnhancer from 'remote-redux-devtools';
+// import devToolsEnhancer from 'remote-redux-devtools'; // usefull while in dev
 import gpsDataReducer from './store/Reducers';
 
 import { widthPercentageToDP, heightPercentageToDP } from './util/getDimensions';
@@ -22,8 +22,10 @@ import TimeDisplay from './components/TimeDisplay';
 import MaxSpeed from './components/MaxSpeed';
 import KilometerCounter from './components/KilometerCounter';
 
-// Set an initial global state directly:
-const store = createStore(gpsDataReducer, devToolsEnhancer({ realtime: true }));
+// Set an initial global state directly: DEV
+// const store = createStore(gpsDataReducer, devToolsEnhancer({ realtime: true }));
+// Set an initial global state directly: RELEASE
+const store = createStore(gpsDataReducer);
 
 const styles = StyleSheet.create({
   globalContainer: {

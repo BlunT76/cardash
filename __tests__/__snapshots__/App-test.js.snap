@@ -5,7 +5,8 @@ exports[`Snapshots tests App renders correctly 1`] = `
   style={
     Object {
       "backgroundColor": "#272822",
-      "flex": 1,
+      "height": 1334,
+      "width": 750,
     }
   }
 >
@@ -13,13 +14,13 @@ exports[`Snapshots tests App renders correctly 1`] = `
   <View
     style={
       Object {
-        "alignItems": "flex-end",
         "backgroundColor": "#272822",
         "elevation": 5,
-        "flex": 1,
         "flexDirection": "row",
+        "height": 333.5,
         "justifyContent": "space-evenly",
-        "maxHeight": 253.5,
+        "maxHeight": 333.5,
+        "width": 750,
       }
     }
   />
@@ -32,7 +33,10 @@ exports[`Snapshots tests AudioPlayer renders correctly 1`] = `
     Object {
       "flex": 1,
       "flexDirection": "row",
+      "height": 333.5,
       "justifyContent": "center",
+      "marginTop": 13.5,
+      "width": 267,
     }
   }
 >
@@ -45,11 +49,7 @@ exports[`Snapshots tests AudioPlayer renders correctly 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "margin": 26.5,
-      }
-    }
+    style={Object {}}
   >
     <Image
       source={
@@ -74,11 +74,7 @@ exports[`Snapshots tests AudioPlayer renders correctly 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "margin": 26.5,
-      }
-    }
+    style={Object {}}
   >
     <Image
       source={
@@ -103,11 +99,7 @@ exports[`Snapshots tests AudioPlayer renders correctly 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "margin": 26.5,
-      }
-    }
+    style={Object {}}
   >
     <Image
       source={
