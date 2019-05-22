@@ -1,7 +1,8 @@
 /**
  * MinimalCarDashboard
  * https://github.com/BlunT76/cardash
- *
+ * philippe Pereira
+ * huhmiel@free.fr
  */
 
 import React, { PureComponent } from 'react';

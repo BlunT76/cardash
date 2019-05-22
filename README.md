@@ -7,7 +7,7 @@
 * affichage de l'heure
 * lecteur de musique (mp3)
 
-![Screenshot](https://github.com/BlunT76/cardash/blob/master/CarDash.gif)
+![Screenshot](http://huhmiel.free.fr/img/CarDash.gif)
 
 ## Activer la detection de vitasse maxi
 
