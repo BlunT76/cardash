@@ -9,7 +9,7 @@
 
 ![Screenshot](http://huhmiel.free.fr/img/CarDash.gif)
 
-## Activer la detection de vitasse maxi
+## Activer la detection de vitesse maxi
 
 Appuyer sur MAX
 * vert: actif
