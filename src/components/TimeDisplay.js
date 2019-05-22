@@ -29,11 +29,11 @@ const TimeDisplay = (props) => {
 };
 
 TimeDisplay.propTypes = {
-  gpsTime: PropTypes.number,
+  gpsTime: PropTypes.string,
 };
 
 TimeDisplay.defaultProps = {
-  gpsTime: 0,
+  gpsTime: '--:--',
 };
 
 export default connect(mapStateToProps)(TimeDisplay);

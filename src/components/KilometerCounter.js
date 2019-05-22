@@ -8,10 +8,10 @@ import { getHaversineDistance } from '../util/getHaversineDistance';
 
 const mapStateToProps = (state) => {
   const {
-    lat, lng, oldlat, oldlng,
+    lat, lng, oldlat, oldlng, speed,
   } = state;
   return {
-    lat, lng, oldlat, oldlng,
+    lat, lng, oldlat, oldlng, speed,
   };
 };
 
@@ -41,8 +41,12 @@ class KilometerCounter extends PureComponent {
   // Calcul de la distance parcourue
   haversineDistance = () => {
     const {
-      dispatch, lat, lng, oldlat, oldlng,
+      dispatch, lat, lng, oldlat, oldlng, speed,
     } = this.props;
+
+    if (speed < 7) {
+      return;
+    }
     const { traveled } = this.state;
     if (oldlat === 0 && oldlng === 0) {
       dispatch(addOldGpsData({ latitude: lat, longitude: lng }));
@@ -72,6 +76,7 @@ KilometerCounter.propTypes = {
   lng: PropTypes.number,
   oldlat: PropTypes.number,
   oldlng: PropTypes.number,
+  speed: PropTypes.number,
 };
 
 KilometerCounter.defaultProps = {
@@ -80,6 +85,7 @@ KilometerCounter.defaultProps = {
   lng: 0,
   oldlat: 0,
   oldlng: 0,
+  speed: 0,
 };
 
 export default connect(mapStateToProps)(KilometerCounter);

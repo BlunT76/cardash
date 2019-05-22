@@ -7,9 +7,10 @@ import { heightPercentageToDP } from '../util/getDimensions';
 
 
 const mapStateToProps = (state) => {
-  const { gpsData, gpsTime, maxspeed } = state;
-  return { gpsData, gpsTime, maxspeed };
+  const { gpsTime, speed, maxspeed } = state;
+  return { gpsTime, speed, maxspeed };
 };
+
 
 const styles = StyleSheet.create({
   speed: {
@@ -38,9 +39,6 @@ const options = {
 class Speedometer extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      speed: 0,
-    };
     this.watchId = null;
   }
 
@@ -54,23 +52,16 @@ class Speedometer extends PureComponent {
   }
 
   getPosition() {
-    const { dispatch, allowMS } = this.props;
+    const { dispatch } = this.props;
     this.watchId = navigator.geolocation.watchPosition((position) => {
-      if (allowMS === true) {
-        dispatch(addGpsData(position.coords));
-      }
       dispatch(addTime(position.timestamp));
       dispatch(addGpsData(position.coords));
-      this.setState({
-        speed: Math.round(position.coords.speed * 3.6),
-      });
     },
     (error) => {}, options);
   }
 
   render() {
-    const { speed } = this.state;
-    const { maxspeed } = this.props;
+    const { maxspeed, speed } = this.props;
     let speedColor = 'green';
     // Séparation et affichage des caractères de la vitesse
     const displayU = speed % 10;
@@ -112,14 +103,14 @@ class Speedometer extends PureComponent {
 
 Speedometer.propTypes = {
   dispatch: PropTypes.func,
+  speed: PropTypes.number,
   maxspeed: PropTypes.number,
-  allowMS: PropTypes.bool,
 };
 
 Speedometer.defaultProps = {
   dispatch: () => {},
+  speed: 0,
   maxspeed: 0,
-  allowMS: false,
 };
 
 export default connect(mapStateToProps)(Speedometer);

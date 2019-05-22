@@ -5,18 +5,22 @@ const initialState = {
   lng: 0,
   oldlat: 0,
   oldlng: 0,
+  speed: 0,
   maxspeed: 0,
   gpsTime: '',
 };
 
 const gpsDataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_GPS_DATA:
+    case ADD_GPS_DATA: {
+      const speedKmS = Math.round(action.payload.speed * 3.6);
       return {
         ...state,
         lat: action.payload.latitude || 0,
         lng: action.payload.longitude || 0,
+        speed: speedKmS || 0,
       };
+    }
     case 'ADD_OLD_GPS_DATA':
       return {
         ...state,
