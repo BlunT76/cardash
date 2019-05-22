@@ -25,6 +25,7 @@
 # Android/IntelliJ/Vscode
 #
 build/
+.vscode/
 .idea
 .gradle
 local.properties

@@ -1,23 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, PixelRatio, Dimensions } from 'react-native';
-
+import { StyleSheet, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { widthPercentageToDP, heightPercentageToDP } from '../util/getDimensions';
 
-
-//detecte les dimensions de l'écran
-const widthPercentageToDP = widthPercent => {
-  const screenWidth = Dimensions.get("window").width;
-  // Convert string input to decimal number
-  const elemWidth = parseFloat(widthPercent);
-  return PixelRatio.roundToNearestPixel((screenWidth * elemWidth) / 100);
-};
-const heightPercentageToDP = heightPercent => {
-  const screenHeight = Dimensions.get("window").height;
-  // Convert string input to decimal number
-  const elemHeight = parseFloat(heightPercent);
-  return PixelRatio.roundToNearestPixel((screenHeight * elemHeight) / 100);
-};
-export { widthPercentageToDP, heightPercentageToDP };
+const styles = StyleSheet.create({
+  hour: {
+    fontFamily: 'digital-7',
+    fontSize: heightPercentageToDP('20%'),
+    color: 'white',
+    marginLeft: widthPercentageToDP('2%'),
+    marginBottom: heightPercentageToDP('1%'),
+    textAlign: 'left',
+    width: widthPercentageToDP('25%'),
+  },
+});
 
 const mapStateToProps = (state) => {
   const { gpsTime } = state;
@@ -25,20 +22,18 @@ const mapStateToProps = (state) => {
 };
 
 const TimeDisplay = (props) => {
-    return (
-      <Text style={ styles.hour }>{ props.gpsTime || '--:--' }</Text>
-    );
-}
+  const { gpsTime } = props;
+  return (
+    <Text style={styles.hour}>{ gpsTime || '--:--' }</Text>
+  );
+};
 
-const styles = StyleSheet.create({
-  hour: {
-    fontFamily: "digital-7",
-    fontSize: heightPercentageToDP("20%"),
-    color: "white",
-    marginLeft: widthPercentageToDP("2%"),
-    textAlign: 'left',
-    width: widthPercentageToDP("25%"),
-  },
-});
+TimeDisplay.propTypes = {
+  gpsTime: PropTypes.number,
+};
+
+TimeDisplay.defaultProps = {
+  gpsTime: 0,
+};
 
 export default connect(mapStateToProps)(TimeDisplay);
