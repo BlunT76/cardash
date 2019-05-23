@@ -3,6 +3,7 @@ package com.minimalcardashboard;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
 import com.cinder92.musicfiles.RNReactNativeGetMusicFilesPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNDeviceInfo(),
             new RNSoundPackage(),
             new KCKeepAwakePackage(),
             new RNReactNativeGetMusicFilesPackage()

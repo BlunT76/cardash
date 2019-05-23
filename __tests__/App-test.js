@@ -42,14 +42,15 @@ describe('actions tests', () => {
     expect(actions.addOldGpsData(payload)).toEqual(expectedAction);
   });
 
-  it('should create an action to add time', () => {
-    const payload = 'test';
-    const expectedAction = {
-      type: actions.ADD_TIME,
-      payload,
-    };
-    expect(actions.addTime(payload)).toEqual(expectedAction);
-  });
+  // disabled while no locale detection
+  // it('should create an action to add time', () => {
+  //   const payload = 'test';
+  //   const expectedAction = {
+  //     type: actions.ADD_TIME,
+  //     payload,
+  //   };
+  //   expect(actions.addTime(payload)).toEqual(expectedAction);
+  // });
 
   it('should create an action to add maxspeed', () => {
     const payload = 'test';

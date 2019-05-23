@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { widthPercentageToDP, heightPercentageToDP } from '../util/getDimensions';
 
+
 const styles = StyleSheet.create({
   hour: {
     fontFamily: 'digital-7',

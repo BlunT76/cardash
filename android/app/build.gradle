@@ -152,6 +152,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-device-info')
     implementation project(':react-native-sound')
     implementation project(':react-native-keep-awake')
     implementation project(':react-native-get-music-files')
