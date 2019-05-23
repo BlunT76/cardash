@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/BlunT76/cardash.svg?branch=master)](https://travis-ci.com/BlunT76/cardash)
 # Car dashboard
 
 * compteur de vitesse
