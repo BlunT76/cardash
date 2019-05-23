@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/BlunT76/cardash.svg?branch=master)](https://travis-ci.com/BlunT76/cardash)
-[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/BlunT76/cardash/releases/latest)
+[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/BlunT76/cardash/tag/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/BlunT76/cardash/blob/master/LICENSE)
 # Car dashboard
 
