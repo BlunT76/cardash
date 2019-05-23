@@ -93,38 +93,38 @@ describe('reducers tests', () => {
     );
   });
 
-  // disabled while no locale detection
-  // it('should handle ADD_OLD_GPS_DATA', () => {
-  //   const payload = { latitude: 0.44, longitude: 0.44 };
-  //   const action = { type: 'ADD_OLD_GPS_DATA', payload };
-  //   expect(gpsDataReducer(undefined, action)).toEqual(
-  //     {
-  //       lat: 0,
-  //       lng: 0,
-  //       oldlat: 0.44,
-  //       oldlng: 0.44,
-  //       speed: 0,
-  //       maxspeed: 0,
-  //       gpsTime: '',
-  //     },
-  //   );
-  // });
-
-  it('should handle ADD_TIME', () => {
-    const payload = 1558450230;
-    const action = { type: 'ADD_TIME', payload };
+  it('should handle ADD_OLD_GPS_DATA', () => {
+    const payload = { latitude: 0.44, longitude: 0.44 };
+    const action = { type: 'ADD_OLD_GPS_DATA', payload };
     expect(gpsDataReducer(undefined, action)).toEqual(
       {
         lat: 0,
         lng: 0,
-        oldlat: 0,
-        oldlng: 0,
+        oldlat: 0.44,
+        oldlng: 0.44,
         speed: 0,
         maxspeed: 0,
-        gpsTime: '01:54',
+        gpsTime: '',
       },
     );
   });
+
+  // disabled while no locale detection
+  // it('should handle ADD_TIME', () => {
+  //   const payload = 1558450230;
+  //   const action = { type: 'ADD_TIME', payload };
+  //   expect(gpsDataReducer(undefined, action)).toEqual(
+  //     {
+  //       lat: 0,
+  //       lng: 0,
+  //       oldlat: 0,
+  //       oldlng: 0,
+  //       speed: 0,
+  //       maxspeed: 0,
+  //       gpsTime: '01:54',
+  //     },
+  //   );
+  // });
 
   it('should handle ADD_MAXSPEED', () => {
     const payload = 50;
