@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/BlunT76/cardash.svg?branch=master)](https://travis-ci.com/BlunT76/cardash)
-[![Release:](https://badge.fury.io/gh/boennemann%2Fbadges.svg)](https://github.com/BlunT76/cardash)
+[![GitHub version](https://badge.fury.io/gh/BlunT76%2Fcardash.svg)](https://badge.fury.io/gh/BlunT76%2Fcardash)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/BlunT76/cardash/blob/master/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 # Car dashboard
