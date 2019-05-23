@@ -24,7 +24,6 @@ deploy:
     file_glob: true
     skip_cleanup: true
     overwrite: true
-    name: "$APP_VERSION"
     tag_name: "$APP_VERSION"
     on:
         tags: true
