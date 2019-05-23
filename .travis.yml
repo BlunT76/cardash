@@ -1,6 +1,7 @@
 os: linux
 language: android
 jdk: oraclejdk8
+sudo: required
 android:
   components:
     - build-tools-28.0.3
@@ -8,8 +9,6 @@ android:
 before_install:
   - yes | sdkmanager "platforms;android-28"
   - yes | sdkmanager "build-tools;28.0.3"
-  - nvm install && nvm use
-  - npm install -g "npm@$(jq -r '.engines.npm' package.json)"
 install:
   - npm ci
 script:
