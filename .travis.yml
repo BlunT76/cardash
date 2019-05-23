@@ -14,6 +14,6 @@ matrix:
     before_install:
       - yes | sdkmanager "platforms;android-23"
       - yes | sdkmanager "build-tools;23.0.1"
-      - openssl aes-256-cbc -K $enc_keystore_key -iv $enc_keystore_pass -in my-release-key.keystore.enc -out my-release-key.keystore -d
+      - openssl aes-256-cbc -K $enc_keystore_key -iv $enc_keystore_pass -in ./android/app/my-release-key.keystore.enc -out ./android/app/my-release-key.keystore -d
     script:
       - "./android/gradlew assembleRelease -p android/"
