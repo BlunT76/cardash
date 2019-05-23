@@ -16,6 +16,7 @@ matrix:
       - yes | sdkmanager "build-tools;23.0.1"
       - openssl aes-256-cbc -K $enc_keystore_key -iv $enc_keystore_pass -in ./android/app/my-release-key.keystore.enc -out ./android/app/my-release-key.keystore -d
     script:
+      - npm test
       - "./android/gradlew assembleRelease -p android/"
 deploy:
   - provider: releases
