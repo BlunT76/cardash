@@ -1,3 +1,7 @@
+[![Build Status][build-badge]][build]
+[![Version][version-badge]][package]
+[![MIT License][license-badge]][license]
+
 # Car dashboard
 
 * compteur de vitesse
