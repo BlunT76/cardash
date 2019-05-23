@@ -1,8 +1,3 @@
-include:
-  - language: node_js
-    node_js:
-    - "8"
-    script: .travis/ci_node.sh
 os: linux
 language: android
 jdk: oraclejdk8
@@ -11,5 +6,9 @@ android:
   components:
     - build-tools-28.0.3
     - android-28
+before_install:
+  - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "build-tools;28.0.3"
+  - npm install -g "npm@$(jq -r '.engines.npm' package.json)"
 script:
   - "./android/gradlew assembleRelease -p android/"
