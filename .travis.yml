@@ -23,5 +23,10 @@ deploy:
     file: ./android/app/build/outputs/apk/release/*
     file_glob: true
     skip_cleanup: true
+    overwrite: true
+    name: "$APP_VERSION"
+    tag_name: "$APP_VERSION"
     on:
         tags: true
+    before_deploy:
+      - export APP_VERSION=$(./gradlew :app:printVersionName)

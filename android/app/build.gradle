@@ -166,3 +166,10 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+// version name for travis
+task printVersionName {
+    doLast {
+        println android.defaultConfig.versionName
+    }
+}
