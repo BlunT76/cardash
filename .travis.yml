@@ -1,8 +1,6 @@
-include:
-  - language: node_js
-      node_js:
-        - "8"
-      script: .travis/ci_node.sh
+language: node_js
+node_js:
+  - 8
 os: linux
 language: android
 jdk: oraclejdk8
