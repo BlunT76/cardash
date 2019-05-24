@@ -22,6 +22,7 @@ import AudioPlayer from './components/AudioPlayer';
 import TimeDisplay from './components/TimeDisplay';
 import MaxSpeed from './components/MaxSpeed';
 import KilometerCounter from './components/KilometerCounter';
+import TrackTitleDisplay from './components/TrackTitleDisplay';
 
 // Set an initial global state directly: DEV
 // const store = createStore(gpsDataReducer, devToolsEnhancer({ realtime: true }));
@@ -97,6 +98,7 @@ export default class App extends PureComponent {
 
           { allowSpeed && <KilometerCounter /> }
           { allowSpeed && <Speedometer allowMS={allowMaxSpeed} /> }
+          { allowPlayer && <TrackTitleDisplay />}
 
           <View style={styles.bottomContainer}>
 

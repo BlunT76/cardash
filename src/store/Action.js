@@ -11,3 +11,6 @@ export const addTime = payload => ({ type: ADD_TIME, payload });
 
 export const ADD_MAXSPEED = 'ADD_MAXSPEED';
 export const addMaxSpeed = payload => ({ type: ADD_MAXSPEED, payload });
+
+export const ADD_TRACK_NAME = 'ADD_TRACK_NAME';
+export const addTrackName = payload => ({ type: ADD_TRACK_NAME, payload });

@@ -31,3 +31,7 @@ Le compteur de vitesse nécéssite un accès à la location de l'appareil afin d
 Le lecteur de musique nécéssite un accès en lecture seule aux photos, medias et fichiers de l'appareil afin de scanner les morceaux mp3.
 
 Attention!! La détection de la vitesse maxi nécessite un accès internet, suivant votre forfait mobile des frais peuvent etre à prévoir.
+
+## TO DO
+* detect locale
+* internationalization (i18n)

@@ -11,7 +11,6 @@ const mapStateToProps = (state) => {
   return { gpsTime, speed, maxspeed };
 };
 
-
 const styles = StyleSheet.create({
   speed: {
     flex: 1,

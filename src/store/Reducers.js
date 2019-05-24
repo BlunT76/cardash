@@ -1,5 +1,5 @@
 import {
-  ADD_GPS_DATA, ADD_OLD_GPS_DATA, ADD_TIME, ADD_MAXSPEED,
+  ADD_GPS_DATA, ADD_OLD_GPS_DATA, ADD_TIME, ADD_MAXSPEED, ADD_TRACK_NAME,
 } from './Action';
 
 const initialState = {
@@ -10,6 +10,7 @@ const initialState = {
   speed: 0,
   maxspeed: 0,
   gpsTime: '',
+  trackName: '',
 };
 
 const gpsDataReducer = (state = initialState, action) => {
@@ -40,6 +41,11 @@ const gpsDataReducer = (state = initialState, action) => {
       return {
         ...state,
         maxspeed: action.payload,
+      };
+    case ADD_TRACK_NAME:
+      return {
+        ...state,
+        trackName: action.payload,
       };
 
     default:
