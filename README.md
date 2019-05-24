@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/BlunT76/cardash.svg?branch=master)](https://travis-ci.com/BlunT76/cardash)
 [![GitHub version](https://badge.fury.io/gh/BlunT76%2Fcardash.svg)](https://github.com/BlunT76/cardash/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/BlunT76/cardash/blob/master/LICENSE)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/BlunT76/cardash/blob/master/LICENSE.md)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/BlunT76/cardash/issues)
 # Car dashboard
 
 * compteur de vitesse
