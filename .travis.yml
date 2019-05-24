@@ -17,6 +17,8 @@ matrix:
       - openssl aes-256-cbc -K $enc_keystore_key -iv $enc_keystore_pass -in ./android/app/my-release-key.keystore.enc -out ./android/app/my-release-key.keystore -d
     script:
       - "./android/gradlew assembleRelease -p android/"
+before_deploy:
+      - export APP_VERSION=$(./gradlew :app:printVersionName)
 deploy:
   - provider: releases
     api_key: "$GITHUB_TOKEN"
@@ -28,5 +30,4 @@ deploy:
     tag_name: "$APP_VERSION"
     on:
         tags: true
-    before_deploy:
-      - export APP_VERSION=$(./gradlew :app:printVersionName)
+    
