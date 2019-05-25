@@ -19,7 +19,7 @@ Appuyer sur MAX
 * vert: actif
 * blanc: inactif
 
-## lecteur de musique
+## Lecteur de musique
 
 Au démarrage de l'application, tout les morceaux au format mp3
 sont scanné sur le mobile.
