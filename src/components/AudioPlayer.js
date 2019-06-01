@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-  StyleSheet, View, Image, TouchableHighlight,
+  StyleSheet, View, Image, TouchableHighlight, ActivityIndicator,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import MusicFiles from 'react-native-get-music-files';
@@ -44,6 +44,7 @@ class AudioPlayer extends PureComponent {
       playerIsPlaying: false,
       tracks: [],
       trackNumber: 0,
+      playerIsReady: false,
     };
     this.track = null;
   }
@@ -63,7 +64,10 @@ class AudioPlayer extends PureComponent {
       title: true,
       minimumSongDuration: 10000, // get songs bigger than 10000 miliseconds duration,
       fields: ['title', 'albumTitle', 'genre', 'lyrics', 'artwork', 'duration'], // for iOs Version
-    }).then(listtracks => this.setState({ tracks: listtracks }))
+    }).then(listtracks => this.setState({
+      tracks: listtracks,
+      playerIsReady: true,
+    }))
       .catch((error) => {});
   }
 
@@ -135,7 +139,7 @@ class AudioPlayer extends PureComponent {
   }
 
   render() {
-    const { playerIsPlaying } = this.state;
+    const { playerIsPlaying, playerIsReady } = this.state;
     let icon = null;
     if (!playerIsPlaying) {
       icon = playIcon; // require('../assets/play-solid.png');
@@ -144,21 +148,25 @@ class AudioPlayer extends PureComponent {
     }
 
     return (
-      <View style={styles.playerContainer}>
+      playerIsReady ? (
+        <View style={styles.playerContainer}>
+          <TouchableHighlight style={styles.playerButtons} onPress={() => this.handleBackward()}>
+            <Image style={styles.playerIcons} source={backwardIcon} />
+          </TouchableHighlight>
 
-        <TouchableHighlight style={styles.playerButtons} onPress={() => this.handleBackward()}>
-          <Image style={styles.playerIcons} source={backwardIcon} />
-        </TouchableHighlight>
+          <TouchableHighlight style={styles.playerButtons} onPress={() => this.handlePlayPause()}>
+            <Image style={styles.playerIcons} source={icon} />
+          </TouchableHighlight>
 
-        <TouchableHighlight style={styles.playerButtons} onPress={() => this.handlePlayPause()}>
-          <Image style={styles.playerIcons} source={icon} />
-        </TouchableHighlight>
-
-        <TouchableHighlight style={styles.playerButtons} onPress={() => this.handleForward()}>
-          <Image style={styles.playerIcons} source={forwardIcon} />
-        </TouchableHighlight>
-
-      </View>
+          <TouchableHighlight style={styles.playerButtons} onPress={() => this.handleForward()}>
+            <Image style={styles.playerIcons} source={forwardIcon} />
+          </TouchableHighlight>
+        </View>
+      ) : (
+        <View style={styles.playerContainer}>
+          <ActivityIndicator size="large" color="white" />
+        </View>
+      )
     );
   }
 }
